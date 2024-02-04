@@ -1,9 +1,16 @@
 
+
+
+
 spring:
   main:
     web-application-type: none
   application:
     name: transaction-producer
+  cloud.stream.kafka.binder:
+    brokers: localhost
+    defaultBrokerPort: 9092
+    enableObservation: true
   kafka:
     bootstrap-servers: localhost:9092
     schema-registry: http://localhost:8081

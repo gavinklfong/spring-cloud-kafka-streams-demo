@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.1.4</version>
+		<version>3.2.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>space.gavinklfong.demo</groupId>
@@ -26,8 +26,9 @@
     </modules>
 	<properties>
 		<java.version>17</java.version>
+		<org.awaitility.version>4.2.0</org.awaitility.version>
 		<testcontainers.version>1.19.1</testcontainers.version>
-		<io.confluent.version>7.3.1</io.confluent.version>
+		<io.confluent.version>7.5.3</io.confluent.version>
 		<avro.version>1.11.3</avro.version>
 		<commons-csv.version>1.10.0</commons-csv.version>
 		<org.apache.kafka.version>3.5.0</org.apache.kafka.version>
@@ -35,9 +36,17 @@
 		<commons-math3.version>3.6.1</commons-math3.version>
 		<dockerfile-maven.version>1.4.13</dockerfile-maven.version>
 		<junit-jupiter.version>5.10.1</junit-jupiter.version>
+		<spring-cloud.version>2023.0.0</spring-cloud.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<dependency>
 				<groupId>org.testcontainers</groupId>
 				<artifactId>testcontainers-bom</artifactId>
@@ -90,6 +99,12 @@
 				<groupId>org.junit.jupiter</groupId>
 				<artifactId>junit-jupiter</artifactId>
 				<version>${junit-jupiter.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.awaitility</groupId>
+				<artifactId>awaitility</artifactId>
+				<version>${org.awaitility.version}</version>
 				<scope>test</scope>
 			</dependency>
 		</dependencies>
