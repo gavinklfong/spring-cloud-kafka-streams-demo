@@ -10,6 +10,7 @@ import space.gavinklfong.demo.finance.model.TransactionKey;
 import space.gavinklfong.demo.finance.model.TransactionType;
 
 import java.util.function.Function;
+import java.util.Map;
 
 @Slf4j
 @Configuration
@@ -21,5 +22,18 @@ public class KafkaTopologyConfig {
                 .peek((key, value) -> log.info("input - key: {}, value: {}", key, value), Named.as("log-input"))
                 .filter((key, value) -> value.getType().equals(TransactionType.TRANSFER), Named.as("transaction-filter"))
                 .peek((key, value) -> log.info("output - key: {}, value: {}", key, value), Named.as("log-output"));
+    }
+
+    @Bean
+    public Function<KStream<TransactionKey, Transaction>, KStream<TransactionKey, Transaction>[]> splitTransactionByType() {
+        return input -> {
+            Map<String, KStream<TransactionKey, Transaction>> transactionStreamByType = input.split()
+                    .branch((k, v) -> v.getType().equals(TransactionType.TRANSFER))
+                    .branch((k, v) -> v.getType().equals(TransactionType.WITHDRAWAL))
+                    .branch((k, v) -> v.getType().equals(TransactionType.DEPOSIT))
+                    .defaultBranch();
+
+            return transactionStreamByType.values().toArray(new KStream[0]);
+        };
     }
 }

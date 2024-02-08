@@ -1,0 +1,23 @@
+spring.application.name: transaction-filter-topology
+
+spring.cloud:
+  stream.bindings:
+    filterForTransferTransaction-in-0:
+      destination: transactions
+    filterForTransferTransaction-out-0:
+      destination: filtered-transactions
+
+    splitTransactionByType-in-0:
+      destination: transactions
+    splitTransactionByType-out-0:
+      destination: transfer-transactions
+    splitTransactionByType-out-1:
+      destination: withdrawal-transactions
+    splitTransactionByType-out-2:
+      destination: deposit-transactions
+    splitTransactionByType-out-3:
+      destination: other-transactions
+
+  function:
+    definition: filterForTransferTransaction;splitTransactionByType
+
