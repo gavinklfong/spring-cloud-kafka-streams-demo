@@ -3,7 +3,7 @@ management.endpoints.web.exposure.include: kafkastreamstopology,bindings,metrics
 management.health.binders.enabled: true
 management.endpoint.health.show-details: ALWAYS
 
-spring.application.name: account-balance-calculation-topology-3
+spring.application.name: account-balance-calculation-topology
 
 spring.cloud:
   stream:
@@ -11,7 +11,7 @@ spring.cloud:
       calculateAccountBalance-in-0:
         destination: transactions
       calculateAccountBalance-out-0:
-        destination: account-balances-3
+        destination: account-balances
 
     kafka:
       streams:
