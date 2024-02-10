@@ -17,16 +17,16 @@ import java.util.UUID;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
+import static space.gavinklfong.demo.finance.topology.KafkaTopologyConfig.ACCOUNT_BALANCE_STATE_STORE;
 
 @Slf4j
 public class AccountBalanceCalculator implements Processor<TransactionKey, Transaction, UUID, List<AccountBalance>> {
     private KeyValueStore<String, String> accountBalanceStore;
-
     private ProcessorContext<UUID, List<AccountBalance>> processorContext;
 
     @Override
     public void init(ProcessorContext<UUID, List<AccountBalance>> processorContext) {
-        this.accountBalanceStore = processorContext.getStateStore("account-balance-store");
+        this.accountBalanceStore = processorContext.getStateStore(ACCOUNT_BALANCE_STATE_STORE);
         this.processorContext = processorContext;
     }
 

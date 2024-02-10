@@ -26,6 +26,7 @@
     </modules>
 	<properties>
 		<java.version>17</java.version>
+		<assert.version>3.25.3</assert.version>
 		<org.awaitility.version>4.2.0</org.awaitility.version>
 		<testcontainers.version>1.19.1</testcontainers.version>
 		<io.confluent.version>7.5.3</io.confluent.version>
@@ -107,6 +108,13 @@
 				<version>${org.awaitility.version}</version>
 				<scope>test</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.assertj</groupId>
+				<artifactId>assertj-core</artifactId>
+				<version>${assert.version}</version>
+				<scope>test</scope>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
