@@ -1,1 +1,0 @@
-docker run --name loan-evaluation-service --rm --net=host whalebig27/loan-evaluation-service:latest

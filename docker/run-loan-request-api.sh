@@ -1,1 +1,0 @@
-docker run --name loan-request-api --rm --net=host whalebig27/loan-request-api:latest
